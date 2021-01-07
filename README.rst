@@ -25,7 +25,7 @@ Requirements
 
 FileBrowser 3.8 requires
 
-* Django 1.11/2.2/3.0 (http://www.djangoproject.com)
+* Django >= 3.1 (http://www.djangoproject.com)
 * Pillow (https://github.com/python-imaging/Pillow)
 
 No Grappelli
@@ -42,7 +42,7 @@ Installation
 
 Latest version:
 
-    pip install -e git+git://github.com/smacker/django-filebrowser-no-grappelli.git#egg=django-filebrowser
+    pip install -e git+git://github.com/chrisitanwgd/django-filebrowser-no-grappelli.git#egg=django-filebrowser
 
 Stable version:
 
