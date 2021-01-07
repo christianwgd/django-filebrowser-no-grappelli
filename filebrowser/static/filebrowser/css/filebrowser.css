@@ -211,12 +211,6 @@ span.qq-upload-file {
     display: none;
 }
 
-.popup.filebrowser.change-list .results,
-.popup.filebrowser.change-list #toolbar {
-    margin-right: 240px;
-}
-
-/* Django <= 3.1.1 (no flex) */
 .popup.filebrowser.change-list .filtered .changelist-form-container .results,
 .popup.filebrowser.change-list .filtered .changelist-form-container #toolbar {
     margin-right: 240px;
