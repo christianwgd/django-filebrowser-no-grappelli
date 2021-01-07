@@ -221,6 +221,22 @@ span.qq-upload-file {
     margin-right: 260px;
 }
 
+@media screen and (max-width: 1024px) {
+    .popup.filebrowser.change-list .filtered .results,
+    .popup.filebrowser.change-list .filtered #toolbar {
+        margin-right: 0;
+    }
+    .popup.filebrowser.change-list .filtered #toolbar {
+        padding: 8px 10px;
+    }
+    #changelist-filter {
+        margin: 0;
+    }
+    #searchbar {
+        width: 100px;
+    }
+}
+
 /* Django 1.8 */
 .popup.filebrowser .old-design .object-tools {
     margin-top: -20px;
