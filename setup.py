@@ -8,10 +8,10 @@ def read(fname):
 
 setup(
     name='django-filebrowser-no-grappelli',
-    version='3.8.0',
+    version='3.8.1',
     description='Media-Management no Grappelli',
     long_description=read('README.rst'),
-    url='https://github.com/smacker/django-filebrowser-no-grappelli',
+    url='https://github.com/christianwgd/django-filebrowser-no-grappelli',
     download_url='',
     author='Patrick Kranzlmueller, Axel Swoboda (vonautomatisch)',
     author_email='office@vonautomatisch.at',
