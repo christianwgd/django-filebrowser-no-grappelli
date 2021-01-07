@@ -211,23 +211,33 @@ span.qq-upload-file {
     display: none;
 }
 
-.popup.filebrowser.change-list .filtered .results,
-.popup.filebrowser.change-list .filtered #toolbar {
-    margin-right: 260px;
+.popup.filebrowser.change-list .results,
+.popup.filebrowser.change-list #toolbar {
+    margin-right: 240px;
 }
 
-@media screen and (max-width: 1024px) {
-    .popup.filebrowser.change-list .filtered .results,
-    .popup.filebrowser.change-list .filtered #toolbar {
+/* Django <= 3.1.1 (no flex) */
+.popup.filebrowser.change-list .filtered .changelist-form-container .results,
+.popup.filebrowser.change-list .filtered .changelist-form-container #toolbar {
+    margin-right: 240px;
+}
+
+.popup.filebrowser.change-list .object-tools {
+    padding-right: 10px;
+}
+
+@media screen and (max-width: 760px) {
+    .popup.filebrowser.change-list .filtered .changelist-form-container .results,
+    .popup.filebrowser.change-list .filtered .changelist-form-container #toolbar {
         margin-right: 0;
     }
-    .popup.filebrowser.change-list .filtered #toolbar {
+    .popup.filebrowser.change-list .filtered .changelist-form-container #toolbar {
         padding: 8px 10px;
     }
     #changelist-filter {
         margin: 0;
     }
-    #searchbar {
-        width: 100px;
+    .popup.filebrowser.change-list .object-tools {
+        padding-top: 10px;
     }
 }
