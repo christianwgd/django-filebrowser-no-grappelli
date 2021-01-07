@@ -207,11 +207,6 @@ span.qq-upload-file {
     padding-left: 10px;
 }
 
-.popup.filebrowser .object-tools {
-    margin-top: -35px;
-    margin-right: 10px;
-}
-
 .popup.filebrowser h1 {
     display: none;
 }
@@ -235,14 +230,4 @@ span.qq-upload-file {
     #searchbar {
         width: 100px;
     }
-}
-
-/* Django 1.8 */
-.popup.filebrowser .old-design .object-tools {
-    margin-top: -20px;
-}
-
-.old-design .pulldown-versions-handler:after {
-    border-top-color: #000;
-    border-bottom-color: #000;
 }
