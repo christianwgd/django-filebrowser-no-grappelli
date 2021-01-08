@@ -42,7 +42,7 @@ Installation
 
 Latest version:
 
-    pip install -e git+git://github.com/christianwgd/django-filebrowser-no-grappelli.git#egg=django-filebrowser
+    pip install -e git+git://github.com/christianwgd/django-filebrowser-no-grappelli.git#egg=django-filebrowser-no-grappelli
 
 Stable version:
 
