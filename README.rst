@@ -46,7 +46,7 @@ Latest version:
 
 Stable version:
 
-    pip install django-filebrowser-no-grappelli
+    pip install django-filebrowser-no-grappelli2
 
 Documentation
 -------------
