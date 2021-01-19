@@ -131,3 +131,77 @@ class S3BotoStorageMixin(StorageMixin):
         # is set in settings.py with AWS_DEFAULT_ACL.
         # More info: http://django-common-configs.readthedocs.org/en/latest/configs/storage.html
         pass
+
+
+class AzureStorageMixin(StorageMixin):
+    """ Filebrowser storage class for Azure. """
+
+    def isdir(self, name):
+        """
+        Returns true if name exists and is a directory.
+        """
+        if name.endswith('/'):
+            return True
+
+        result = self.listdir(name)
+        # if name contains dirs (result[0]) or files (result[1])
+        # its a directory
+        # print('isdir', name, result, len(result[0]) > 0 or len(result[1]) > 0)
+        return len(result[0]) > 0 or len(result[1]) > 0
+
+    def isfile(self, name):
+        """
+        Returns true if name exists and is a regular file.
+        """
+        # print('isfile', name, self.exists(name))
+        return self.exists(name)
+
+    def listdir(self, path=''):
+        files = []
+        dirs = []
+
+        path_parts = path.split('/')
+        if path_parts[-1] == '':
+            current_path = path_parts[0]
+        else:
+            current_path = path_parts[-1]
+
+        for name in self.list_all(path):
+            name_parts = name.split('/')
+            if name_parts[-2] == current_path:
+                files.append(name_parts[-1])
+            else:
+                if name_parts[-2] not in dirs:
+                    dirs.append(name_parts[-2])
+        return dirs, files
+
+    def move(self, old_file_name, new_file_name, allow_overwrite=True):
+        """
+        Moves safely a file from one location to another.
+
+        If allow_ovewrite==False and new_file_name exists, raises an exception.
+        """
+        print('move')
+        pass
+
+    def makedirs(self, name):
+        """
+        Creates all missing directories specified by name. Analogue to os.mkdirs().
+        """
+        print('makedirs')
+        pass
+
+    def rmtree(self, name):
+        """
+        Deletes a directory and everything it contains. Analogue to shutil.rmtree().
+        """
+        print('rmtree')
+        raise NotImplementedError()
+
+    def setpermission(self, name):
+        """
+        # Permissions for Azure uploads with django-storages
+        # is set in settings.py.
+        # More info: http://django-common-configs.readthedocs.org/en/latest/configs/storage.html
+        """
+        pass
