@@ -15,6 +15,9 @@ class StorageMixin(object):
     Adds some useful methods to the Storage class.
     """
 
+    def storage_type(self):
+        return 'Filebrowser'
+
     def isdir(self, name):
         """
         Returns true if name exists and is a directory.
@@ -33,6 +36,7 @@ class StorageMixin(object):
 
         If allow_ovewrite==False and new_file_name exists, raises an exception.
         """
+        print('move', old_file_name, new_file_name, allow_overwrite)
         raise NotImplementedError()
 
     def makedirs(self, name):
@@ -77,6 +81,9 @@ class FileSystemStorageMixin(StorageMixin):
 
 
 class S3BotoStorageMixin(StorageMixin):
+
+    def storage_type(self):
+        return 'S3'
 
     def isfile(self, name):
         return self.exists(name)
@@ -134,7 +141,45 @@ class S3BotoStorageMixin(StorageMixin):
 
 
 class AzureStorageMixin(StorageMixin):
-    """ Filebrowser storage class for Azure. """
+    """
+
+        Filebrowser storage class for Azure storage blob.
+
+        This mixin depends on django-storage dependency.
+        Note that the latest version of django-storages
+        only supports the Azure python sdk version 2.1.0!
+
+        Follow the configuration instructions at
+        https://django-storages.readthedocs.io/en/latest/backends/azure.html
+
+        Add the following class to your 'storage_backend.py':
+
+        class AzureFilebrowserStorage(AzureStorageMixin, AzureMediaStorage):
+            pass
+
+        and set the correct storage class (i.e. in your urls.py):
+
+        from filebrowser.sites import site as fb_site
+        from <your_project>.storage_backend import AzureFilebrowserStorage
+        fb_site.storage = AzureFilebrowserStorage(
+            location='',
+        )
+
+        Note: Permissions are not supported by Azure.
+              Set FILEBROWSER_DEFAULT_PERMISSIONS to None
+
+        Azure storage blob is only flat, so all directory
+        structures are fake. To create an empty directory
+        a file named exist.txt with no content is created,
+        which has the desired path.
+
+    """
+
+    def sys_file(self):
+        return 'dir.azr'
+
+    def storage_type(self):
+        return 'Azure'
 
     def isdir(self, name):
         """
@@ -144,9 +189,7 @@ class AzureStorageMixin(StorageMixin):
             return True
 
         result = self.listdir(name)
-        # if name contains dirs (result[0]) or files (result[1])
-        # its a directory
-        # print('isdir', name, result, len(result[0]) > 0 or len(result[1]) > 0)
+        # if name contains dirs (result[0]) or files (result[1]) its a directory
         return len(result[0]) > 0 or len(result[1]) > 0
 
     def isfile(self, name):
@@ -161,19 +204,30 @@ class AzureStorageMixin(StorageMixin):
         dirs = []
 
         path_parts = path.split('/')
+
+        # remove blank parts of path
         if path_parts[-1] == '':
-            current_path = path_parts[0]
-        else:
-            current_path = path_parts[-1]
+            path_parts = path_parts[:-1]
 
         for name in self.list_all(path):
             name_parts = name.split('/')
-            if name_parts[-2] == current_path:
+
+            # check dir level of files
+            if len(name_parts) == len(path_parts) + 1:
                 files.append(name_parts[-1])
-            else:
+            # check dir level of dirs
+            elif len(name_parts) == len(path_parts) + 2:
                 if name_parts[-2] not in dirs:
                     dirs.append(name_parts[-2])
+            else:
+                pass
         return dirs, files
+
+    def path(self, name):
+        """
+        Azure storage doesn't support Python's open() function.
+        """
+        return False
 
     def move(self, old_file_name, new_file_name, allow_overwrite=True):
         """
@@ -188,7 +242,11 @@ class AzureStorageMixin(StorageMixin):
         """
         Creates all missing directories specified by name. Analogue to os.mkdirs().
         """
-        print('makedirs')
+        self.service.create_blob_from_text(
+            self.azure_container,
+            name+'/'+self.sys_file(),
+            '.'
+        )
         pass
 
     def rmtree(self, name):

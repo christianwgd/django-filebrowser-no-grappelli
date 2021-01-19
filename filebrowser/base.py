@@ -10,7 +10,6 @@ import time
 from django.core.files import File
 from django.utils.encoding import force_text
 from django.utils.functional import cached_property
-from six import python_2_unicode_compatible, string_types
 
 from filebrowser.settings import EXTENSIONS, VERSIONS, ADMIN_VERSIONS, VERSIONS_BASEDIR, VERSION_QUALITY, STRICT_PIL, IMAGE_MAXBLOCK, DEFAULT_PERMISSIONS
 from filebrowser.utils import path_strip, process_image
@@ -79,9 +78,7 @@ class FileListing():
         the sorted list of objects.
         """
         from operator import attrgetter
-        if isinstance(attr, string_types):  # Backward compatibility hack
-            attr = (attr, )
-        return sorted(seq, key=attrgetter(*attr))
+        return sorted(seq, key=attrgetter(attr))
 
     @cached_property
     def is_folder(self):
@@ -197,7 +194,6 @@ class FileListing():
         return len(self.files_walk_filtered())
 
 
-@python_2_unicode_compatible
 class FileObject():
     """
     The FileObject represents a file (or directory) on the server.
@@ -275,6 +271,13 @@ class FileObject():
         "Modified time (from site.storage) as float (mktime)"
         if self.exists:
             return time.mktime(get_modified_time(self.site.storage, self.path).timetuple())
+        else:
+            # hack for Azure storage
+            # There are no directories in Azure, get the 'system' file
+            # from 'directory' and return that date
+            if self.site.storage.storage_type() == 'Azure':
+                dir_file = self.path+'/dir.azr'
+                return time.mktime(get_modified_time(self.site.storage, dir_file).timetuple())
         return None
 
     @property
