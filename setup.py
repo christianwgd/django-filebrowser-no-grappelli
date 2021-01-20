@@ -38,5 +38,4 @@ setup(
         'Programming Language :: Python :: 3.8',
     ],
     zip_safe=False,
-    install_requires=['six'],
 )
