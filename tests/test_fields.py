@@ -2,8 +2,6 @@
 
 from tests import FilebrowserTestCase as TestCase
 
-from six import string_types
-
 from filebrowser.base import FileObject
 from filebrowser.fields import FileBrowseField
 
@@ -30,6 +28,6 @@ class FileBrowseFieldTests(TestCase):
         values = [FileObject(self.path_to_file), self.path_to_file]
         for v in values:
             actual = field.get_prep_value(v)
-            self.assertIsInstance(actual, string_types)
+            self.assertIsInstance(actual, str)
             self.assertEqual(actual, self.path_to_file)
         self.assertEqual(field.to_python(None), None)

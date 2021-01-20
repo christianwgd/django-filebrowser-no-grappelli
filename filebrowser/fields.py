@@ -2,17 +2,13 @@
 import os
 
 from django import forms
-try:
-    from django.urls import reverse
-except ImportError:
-    from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db.models.fields import CharField
 from django.forms.widgets import Input
 from django.template.loader import render_to_string
 from django.templatetags.static import static
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.options import FORMFIELD_FOR_DBFIELD_DEFAULTS
-from six import string_types
 
 from filebrowser.base import FileObject
 from filebrowser.settings import ADMIN_THUMBNAIL, EXTENSIONS, UPLOAD_TEMPDIR
@@ -112,7 +108,7 @@ class FileBrowseField(CharField):
         return self.to_python(value)
 
     def get_prep_value(self, value):
-        if not value or isinstance(value, string_types):
+        if not value or isinstance(value, str):
             return value
         return value.path
 
@@ -250,7 +246,7 @@ class FileBrowseUploadField(CharField):
         return FileObject(value, site=self.site)
 
     def get_prep_value(self, value):
-        if not value or isinstance(value, string_types):
+        if not value or isinstance(value, str):
             return value
         return value.path
 
