@@ -2,6 +2,7 @@
 
 import os
 import shutil
+from time import sleep
 
 from django.core.files.move import file_move_safe
 from django.utils.encoding import smart_text
@@ -33,7 +34,6 @@ class StorageMixin(object):
 
         If allow_ovewrite==False and new_file_name exists, raises an exception.
         """
-        print('move', old_file_name, new_file_name, allow_overwrite)
         raise NotImplementedError()
 
     def makedirs(self, name):
@@ -169,6 +169,10 @@ class AzureStorageMixin(StorageMixin):
         To hide these files in GUI add this to settings.py:
         FILEBROWSER_EXCLUDE = ['azr']
 
+        Note: The Azure storage doesn't support the operation
+              'move' at the moment. So you can't rename files.
+              Please use delete and make a new upload.
+
     """
     storage_type = 'azure'
 
@@ -190,7 +194,6 @@ class AzureStorageMixin(StorageMixin):
         """
         Returns true if name exists and is a regular file.
         """
-        # print('isfile', name, self.exists(name))
         return self.exists(name)
 
     def listdir(self, path=''):
@@ -223,14 +226,46 @@ class AzureStorageMixin(StorageMixin):
         """
         return False
 
+    def move_blob(self, old_file_name, new_file_name):
+        """ Move single file to new place """
+        old_blob_url = self.service.make_blob_url(self.azure_container, old_file_name)
+
+        self.service.copy_blob(
+            self.azure_container,
+            new_file_name,
+            old_blob_url
+        )
+        # The copy process is asynchronous
+        # wait for success
+        max_wait = 5
+        success = False
+        wait_cycles = 0
+        while not success and wait_cycles < max_wait:
+            sleep(1)
+            dest_blob = self.service.get_blob_properties(self.azure_container, new_file_name)
+            wait_cycles += 1
+            if dest_blob.properties.creation_time or wait_cycles == max_wait:
+                self.service.delete_blob(self.azure_container, old_file_name)
+                break
+        return
+
     def move(self, old_file_name, new_file_name, allow_overwrite=True):
         """
-        Moves safely a file from one location to another.
-
-        If allow_ovewrite==False and new_file_name exists, raises an exception.
+        Azure blob storage doesn't support file move or rename.
+        So instead, copy to a new blob and delete the old.
         """
-        print('move')
-        pass
+        if self.isdir(old_file_name):
+            to_move = [
+                blob for blob in self.service.list_blobs(
+                    self.azure_container, old_file_name
+                )
+            ]
+            for item in to_move:
+                new_name = item.name.replace(old_file_name, new_file_name)
+                self.move_blob(item.name, new_name)
+        else: # move single file
+            self.move_blob(old_file_name, new_file_name)
+        return
 
     def makedirs(self, name):
         """
@@ -245,10 +280,16 @@ class AzureStorageMixin(StorageMixin):
 
     def rmtree(self, name):
         """
-        Deletes a directory and everything it contains. Analogue to shutil.rmtree().
+        Remove all blobs beginning with the name path
         """
-        print('rmtree')
-        raise NotImplementedError()
+        if self.isdir(name):
+            folders = [
+                blob for blob in self.service.list_blobs(self.azure_container, name)
+            ]
+            if len(folders) > 0:
+                for folder in folders:
+                    self.service.delete_blob(self.azure_container, folder.name)
+        return
 
     def setpermission(self, name):
         """
