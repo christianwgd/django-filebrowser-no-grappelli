@@ -13,12 +13,12 @@
 
     {% for item in breadcrumbs %}
         {% if not forloop.last %}
-            <a href="{% url 'filebrowser:fb_browse' %}{% query_string "" "q,dir,filename,p" %}&amp;dir={{ item.1|urlencode }}">{{ item.0 }}</a>
+            <a href="{% url 'filebrowser:fb_browse' %}{% query_string "" "q,dir,filename,p" %}&amp;dir={{ item.1|urlencode }}">{{ item.0 }}</a> &rsaquo;
         {% else %}
             {% if breadcrumbs_title %}
-                <a href="{% url 'filebrowser:fb_browse' %}{% query_string "" "q,dir,filename,p" %}&amp;dir={{ item.1|urlencode }}">{{ item.0 }}</a> &rsaquo;
+                <a href="{% url 'filebrowser:fb_browse' %}{% query_string "" "q,dir,filename,p" %}&amp;dir={{ item.1|urlencode }}">{{ item.0 }}</a>
             {% else %}
-                {{ item.0 }} &rsaquo;
+                {{ item.0 }}
             {% endif %}
         {% endif %}
     {% endfor %}
