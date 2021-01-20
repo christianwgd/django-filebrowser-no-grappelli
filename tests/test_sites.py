@@ -4,12 +4,9 @@ import os
 import json
 import shutil
 
-try:
-    from django.urls import reverse
-except ImportError:
-    from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.http import urlencode
-from mock import patch
+from unittest.mock import patch
 
 from filebrowser.settings import VERSIONS, DEFAULT_PERMISSIONS
 from filebrowser.base import FileObject

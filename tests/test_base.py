@@ -5,7 +5,7 @@ import ntpath
 import posixpath
 import shutil
 
-from mock import patch
+from unittest.mock import patch
 
 from filebrowser.base import FileObject, FileListing
 from filebrowser.sites import site
