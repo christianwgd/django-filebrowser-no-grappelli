@@ -15,9 +15,6 @@ class StorageMixin(object):
     Adds some useful methods to the Storage class.
     """
 
-    def storage_type(self):
-        return 'Filebrowser'
-
     def isdir(self, name):
         """
         Returns true if name exists and is a directory.
@@ -81,9 +78,6 @@ class FileSystemStorageMixin(StorageMixin):
 
 
 class S3BotoStorageMixin(StorageMixin):
-
-    def storage_type(self):
-        return 'S3'
 
     def isfile(self, name):
         return self.exists(name)
@@ -170,16 +164,16 @@ class AzureStorageMixin(StorageMixin):
 
         Azure storage blob is only flat, so all directory
         structures are fake. To create an empty directory
-        a file named exist.txt with no content is created,
+        a file named 'dir.azr' with no content is created,
         which has the desired path.
+        To hide these files in GUI add this to settings.py:
+        FILEBROWSER_EXCLUDE = ['azr']
 
     """
+    storage_type = 'azure'
 
     def sys_file(self):
         return 'dir.azr'
-
-    def storage_type(self):
-        return 'Azure'
 
     def isdir(self, name):
         """

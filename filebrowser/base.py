@@ -264,7 +264,16 @@ class FileObject():
     @cached_property
     def filesize(self):
         "Filesize in bytes"
-        return self.site.storage.size(self.path) if self.exists else None
+        if self.exists:
+            return self.site.storage.size(self.path)
+        else:
+            # hack for Azure storage
+            # There are no directories in Azure, so they have no size
+            # Return 0 because None causes an exception
+            if hasattr(self.site.storage, 'storage_type'):
+                if self.site.storage.storage_type == 'azure':
+                    return 0
+            return None
 
     @cached_property
     def date(self):
@@ -275,9 +284,10 @@ class FileObject():
             # hack for Azure storage
             # There are no directories in Azure, get the 'system' file
             # from 'directory' and return that date
-            if self.site.storage.storage_type() == 'Azure':
-                dir_file = self.path+'/dir.azr'
-                return time.mktime(get_modified_time(self.site.storage, dir_file).timetuple())
+            if hasattr(self.site.storage, 'storage_type'):
+                if self.site.storage.storage_type == 'azure':
+                    dir_file = self.path+'/dir.azr'
+                    return time.mktime(get_modified_time(self.site.storage, dir_file).timetuple())
         return None
 
     @property

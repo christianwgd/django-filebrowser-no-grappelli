@@ -13,13 +13,9 @@ from django.utils.module_loading import import_string
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.files.storage import DefaultStorage, default_storage, FileSystemStorage
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
-try:
-    from django.urls import reverse, get_urlconf, get_resolver
-except ImportError:
-    from django.core.urlresolvers import reverse, get_urlconf, get_resolver
+from django.urls import path, reverse, get_urlconf, get_resolver
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
-from django.shortcuts import render, HttpResponse
-from django.template import RequestContext as Context
+from django.shortcuts import HttpResponse
 from django.template.response import TemplateResponse
 from django.utils.encoding import smart_text
 from django.utils.translation import ugettext as _
@@ -203,19 +199,16 @@ class FileBrowserSite(object):
     directory = property(_directory_get, _directory_set)
 
     def get_urls(self):
-        "URLs for a filebrowser.site"
-        from django.conf.urls import url
-
         # filebrowser urls (views)
         urlpatterns = [
-            url(r'^browse/$', path_exists(self, filebrowser_view(self.browse)), name="fb_browse"),
-            url(r'^createdir/', path_exists(self, filebrowser_view(self.createdir)), name="fb_createdir"),
-            url(r'^upload/', path_exists(self, filebrowser_view(self.upload)), name="fb_upload"),
-            url(r'^delete_confirm/$', file_exists(self, path_exists(self, filebrowser_view(self.delete_confirm))), name="fb_delete_confirm"),
-            url(r'^delete/$', file_exists(self, path_exists(self, filebrowser_view(self.delete))), name="fb_delete"),
-            url(r'^detail/$', file_exists(self, path_exists(self, filebrowser_view(self.detail))), name="fb_detail"),
-            url(r'^version/$', file_exists(self, path_exists(self, filebrowser_view(self.version))), name="fb_version"),
-            url(r'^upload_file/$', staff_member_required(csrf_exempt(self._upload_file)), name="fb_do_upload"),
+            path('browse/', path_exists(self, filebrowser_view(self.browse)), name="fb_browse"),
+            path('createdir/', path_exists(self, filebrowser_view(self.createdir)), name="fb_createdir"),
+            path('upload/', path_exists(self, filebrowser_view(self.upload)), name="fb_upload"),
+            path('delete_confirm/', file_exists(self, path_exists(self, filebrowser_view(self.delete_confirm))), name="fb_delete_confirm"),
+            path('delete/', file_exists(self, path_exists(self, filebrowser_view(self.delete))), name="fb_delete"),
+            path('detail/', file_exists(self, path_exists(self, filebrowser_view(self.detail))), name="fb_detail"),
+            path('version/', file_exists(self, path_exists(self, filebrowser_view(self.version))), name="fb_version"),
+            path('upload_file/', staff_member_required(csrf_exempt(self._upload_file)), name="fb_do_upload"),
         ]
         return urlpatterns
 
