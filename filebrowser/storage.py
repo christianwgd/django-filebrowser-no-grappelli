@@ -134,10 +134,10 @@ class S3BotoStorageMixin(StorageMixin):
         pass
 
 
-class AzureStorageMixin(StorageMixin):
+class AzureBlobStorageMixin(StorageMixin):
     """
 
-        Filebrowser storage class for Azure storage blob.
+        Filebrowser storage class for Azure blob storage.
 
         This mixin depends on django-storage dependency.
         Note that the latest version of django-storages
@@ -148,7 +148,7 @@ class AzureStorageMixin(StorageMixin):
 
         Add the following class to your 'storage_backend.py':
 
-        class AzureFilebrowserStorage(AzureStorageMixin, AzureMediaStorage):
+        class AzureFilebrowserStorage(AzureBlobStorageMixin, AzureMediaStorage):
             pass
 
         and set the correct storage class (i.e. in your urls.py):
