@@ -173,6 +173,10 @@ class AzureBlobStorageMixin(StorageMixin):
               'move' at the moment. So you can't rename files.
               Please use delete and make a new upload.
 
+        Known issues:
+        - The management commands for the file browser do not
+          work correctly at the moment!
+
     """
     storage_type = 'azure'
 
