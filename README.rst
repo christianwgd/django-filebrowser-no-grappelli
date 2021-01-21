@@ -63,6 +63,7 @@ https://www.transifex.com/projects/p/django-filebrowser/
 Releases
 --------
 
-* FileBrowser 3.8.1 (November 4th, 2019): Compatible with Django 3.1
+* FileBrowser 3.8.1 (January 7, 2021): Compatible with Django 3.1
+* FileBrowser 3.8.2 (January 21, 2021): Azure Blob Storage Mixin
 
 Older versions are available at GitHub, but are not supported anymore.
