@@ -139,7 +139,7 @@ class AzureBlobStorageMixin(StorageMixin):
 
         Filebrowser storage class for Azure blob storage.
 
-        This mixin depends on django-storage dependency.
+        This mixin depends on django-storage.
         Note that the latest version of django-storages
         only supports the Azure python sdk version 2.1.0!
 
@@ -160,7 +160,8 @@ class AzureBlobStorageMixin(StorageMixin):
         )
 
         Note: Permissions are not supported by Azure.
-              Set FILEBROWSER_DEFAULT_PERMISSIONS to None
+              Set FILEBROWSER_DEFAULT_PERMISSIONS to None:
+              FILEBROWSER_DEFAULT_PERMISSIONS = None
 
         Azure storage blob is only flat, so all directory
         structures are fake. To create an empty directory
@@ -168,10 +169,6 @@ class AzureBlobStorageMixin(StorageMixin):
         which has the desired path.
         To hide these files in GUI add this to settings.py:
         FILEBROWSER_EXCLUDE = ['azr']
-
-        Note: The Azure storage doesn't support the operation
-              'move' at the moment. So you can't rename files.
-              Please use delete and make a new upload.
 
         Known issues:
         - The management commands for the file browser do not
