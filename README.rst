@@ -63,5 +63,6 @@ Releases
 
 * FileBrowser 3.8.1 (January 7, 2021): Compatible with Django 3.1, TinyMCE 5
 * FileBrowser 3.8.2 (January 21, 2021): Azure Blob Storage Mixin added
+* FileBrowser 3.8.3 (March 12, 2021): Remove Django 4.0 deprecation warnings
 
 Older versions are available at GitHub, but are not supported anymore.
