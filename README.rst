@@ -1,9 +1,9 @@
 Django FileBrowser
 ==================
-.. image:: https://img.shields.io/pypi/v/django-filebrowser-no-grappelli.svg
+.. image:: https://img.shields.io/pypi/v/django-filebrowser-no-grappelli2.svg
     :target: https://pypi.python.org/pypi/django-filebrowser-no-grappelli2
 
-.. image:: https://img.shields.io/pypi/l/django-filebrowser-no-grappelli.svg
+.. image:: https://img.shields.io/pypi/l/django-filebrowser-no-grappelli2.svg
     :target: https://pypi.python.org/pypi/django-filebrowser-no-grappelli2
 
 .. image:: https://img.shields.io/pypi/dm/django-filebrowser-no-grappelli2
