@@ -18,7 +18,7 @@ from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import HttpResponse
 from django.template.response import TemplateResponse
 from django.utils.encoding import smart_text
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.decorators.csrf import csrf_exempt

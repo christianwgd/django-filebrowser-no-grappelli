@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import re_path
 from django.contrib import admin
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -19,7 +19,7 @@ class FileBrowserAdmin(admin.ModelAdmin):
         opts = self.model._meta
         info = opts.app_label, (opts.model_name if hasattr(opts, 'model_name') else opts.module_name)
         return [
-            url('^$', self.admin_site.admin_view(self.filebrowser_view), name='{0}_{1}_changelist'.format(*info)),
+            re_path('^$', self.admin_site.admin_view(self.filebrowser_view), name='{0}_{1}_changelist'.format(*info)),
         ]
 
     def filebrowser_view(self, request):
