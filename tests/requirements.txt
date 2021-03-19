@@ -1,4 +1,4 @@
 funcsigs==1.0.2
 pbr==5.4.4
-Pillow==8.1.0
+Pillow>=8.1.1
 wheel==0.33.6
