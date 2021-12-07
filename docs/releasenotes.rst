@@ -5,6 +5,10 @@
 
 .. _releasenotes:
 
+FileBrowser 3.8.5 Release Notes
+===============================
+* Django 4.0 compatibility
+
 FileBrowser 3.8.2 Release Notes
 ===============================
 

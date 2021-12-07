@@ -1,6 +1,7 @@
-from django.conf.urls import include, url
+from django.conf.urls import include
 from django.contrib import admin
 from django import VERSION as DJANGO_VERSION
+from django.urls import re_path
 
 from filebrowser.sites import site
 
@@ -8,11 +9,11 @@ admin.autodiscover()
 
 if DJANGO_VERSION >= (1, 9):
     urlpatterns = [
-        url(r'^admin/filebrowser/', include(site.urls[:2], namespace=site.urls[2])),
-        url(r'^admin/', include(admin.site.urls[:2], namespace=admin.site.urls[2])),
+        re_path(r'^admin/filebrowser/', include(site.urls[:2], namespace=site.urls[2])),
+        re_path(r'^admin/', include(admin.site.urls[:2], namespace=admin.site.urls[2])),
     ]
 else:
     urlpatterns = [
-        url(r'^admin/filebrowser/', include(site.urls)),
-        url(r'^admin/', include(admin.site.urls)),
+        re_path(r'^admin/filebrowser/', include(site.urls)),
+        re_path(r'^admin/', include(admin.site.urls)),
     ]

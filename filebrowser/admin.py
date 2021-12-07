@@ -1,6 +1,5 @@
-from django.conf.urls import re_path
 from django.contrib import admin
-from django.urls import reverse
+from django.urls import reverse, re_path
 from django.http import HttpResponseRedirect
 from .models import FileBrowser
 from .settings import SHOW_IN_DASHBOARD

@@ -23,7 +23,7 @@ Requirements
 
 FileBrowser 3.8 requires
 
-* Django >= 3.1 (http://www.djangoproject.com)
+* Django >= 3.2 (http://www.djangoproject.com)
 * Pillow (https://github.com/python-imaging/Pillow)
 
 No Grappelli
@@ -64,6 +64,7 @@ Releases
 * FileBrowser 3.8.1 (January 7, 2021): Compatible with Django 3.1, TinyMCE 5
 * FileBrowser 3.8.2 (January 21, 2021): Azure Blob Storage Mixin added
 * FileBrowser 3.8.3 - invalid
-* FileBrowser 3.8.4 (March 12, 2021): Remove Django 4.0 deprecation warnings
+* FileBrowser 3.8.4 (March 12, 2021): Remove Django 4.0 deprecation warning
+* FileBrowser 3.8.5 (December 7, 2021): Django 4.0 compatibility
 
 Older versions are available at GitHub, but are not supported anymore.

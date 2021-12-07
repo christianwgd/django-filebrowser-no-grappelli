@@ -3,15 +3,15 @@
 <p class="paginator">
     {% if page_range %}
         {% for i in page_range %}
-            {% ifequal i "." %}
+            {% if i == "." %}
                 <span>...</span>
             {% else %}
-                {% ifequal i page_num %}
+                {% if i == page_num %}
                     <span class="this-page">{{ i|add:"1" }}</span>
                 {% else %}
                     <a href="{% query_string "" "p" %}&amp;p={{ i|add:"1" }}"{% if forloop.last %} class="end"{% endif %}>{{ i|add:"1" }}</a>
-                {% endifequal %}
-            {% endifequal %}
+                {% endif %}
+            {% endif %}
         {% endfor %}
     {% endif %}
     {{ filelisting.results_total }} {% trans 'total' %}

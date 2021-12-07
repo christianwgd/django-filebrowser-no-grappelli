@@ -1,6 +1,6 @@
 import re
 
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.module_loading import import_string
 
 from .settings import VERSIONS, VERSION_NAMER
@@ -34,7 +34,7 @@ class OptionsNamer(VersionNamer):
 
     def get_version_name(self):
         name = "{root}_{options}{extension}".format(
-            root=force_text(self.file_object.filename_root),
+            root=force_str(self.file_object.filename_root),
             options=self.options_as_string,
             extension=self.file_object.extension,
         )

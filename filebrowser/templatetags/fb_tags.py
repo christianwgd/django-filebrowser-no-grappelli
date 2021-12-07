@@ -1,8 +1,8 @@
 # coding: utf-8
+from urllib.parse import quote
 
 from django import template
 from django.template import TemplateSyntaxError
-from django.utils.http import urlquote
 from django.utils.safestring import mark_safe
 
 from filebrowser.settings import EXTENSIONS, SELECT_FORMATS
@@ -61,7 +61,7 @@ def get_query_string(p, new_params=None, remove=None):
             del p[k]
         elif v is not None:
             p[k] = v
-    return '?' + '&'.join([u'%s=%s' % (urlquote(k), urlquote(v)) for k, v in p.items()])
+    return '?' + '&'.join([u'%s=%s' % (quote(k), quote(v)) for k, v in p.items()])
 
 
 def string_to_dict(string):

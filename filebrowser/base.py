@@ -8,7 +8,7 @@ import tempfile
 import time
 
 from django.core.files import File
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.functional import cached_property
 
 from filebrowser.settings import EXTENSIONS, VERSIONS, ADMIN_VERSIONS, VERSIONS_BASEDIR, VERSION_QUALITY, STRICT_PIL, IMAGE_MAXBLOCK, DEFAULT_PERMISSIONS
@@ -222,7 +222,7 @@ class FileObject():
         self.mimetype = mimetypes.guess_type(self.filename)
 
     def __str__(self):
-        return force_text(self.path)
+        return force_str(self.path)
 
     def __fspath__(self):
         return self.__str__()

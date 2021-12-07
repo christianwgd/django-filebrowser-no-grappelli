@@ -124,9 +124,9 @@
                         <label class="required">{% trans "Allowed" %}</label>
                         <p>
                         {% for extension in settings_var.EXTENSIONS.items %}
-                            {% ifnotequal extension.0 'Folder' %}
+                            {% if extension.0 != 'Folder' %}
                                 <strong>{% trans extension.0|safe %}</strong> ({{ extension.1|join:", "|safe }})<br />
-                            {% endifnotequal %}
+                            {% endif %}
                         {% endfor %}
                         </p>
                     </div>
