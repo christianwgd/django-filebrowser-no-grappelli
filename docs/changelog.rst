@@ -8,6 +8,11 @@
 Changelog
 =========
 
+4.0.1 (Match 2nd, 2022)
+---------------------------
+
+* Use unminified js files. #76 Thanks to @andylolz.
+
 4.0.0 (February 2nd, 2022)
 ---------------------------
 
@@ -15,12 +20,12 @@ Changelog
 * Support for TinyMCE v5. Thanks to @rmaceissoft.
 * Dropbox storage support. Thanks to @rmaceissoft.
 
-3.8.0 (Novermber 4th, 2019)
+3.8.0 (November 4th, 2019)
 ---------------------------
 
 * Django 3.0 support, drop Django <1.11. Thanks to @lpomfrey.
 
-3.7.9 (Novermber 3rd, 2019)
+3.7.9 (November 3rd, 2019)
 ---------------------------
 
 * FileObject should implement os.PathLike protocol
