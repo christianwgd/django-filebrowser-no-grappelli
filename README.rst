@@ -18,8 +18,8 @@ The FileBrowser is an extension to the `Django <http://www.djangoproject.com>`_ 
 * include images/documents to your models/database using the ``FileBrowseField``.
 * select images/documents with TinyMCE.
 
-The only difference by now to the original smacker/django-filebrowser-no-grappelli is
-the additional Azure storage class.
+The only difference by now to the original smacker/django-filebrowser-no-grappelli
+is the additional Azure storage class.
 
 Requirements
 ------------
