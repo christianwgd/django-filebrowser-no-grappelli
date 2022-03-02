@@ -1,7 +1,7 @@
 from django.conf.urls import include
+from django.urls import re_path
 from django.contrib import admin
 from django import VERSION as DJANGO_VERSION
-from django.urls import re_path
 
 from filebrowser.sites import site
 

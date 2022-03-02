@@ -31,7 +31,7 @@ Similar to ``django.contrib.admin``, you first need to add a ``filebrowser.site`
     from filebrowser.sites import site
 
     urlpatterns = patterns('',
-       url(r'^adminurl/filebrowser/', include(site.urls)),
+       re_path(r'^adminurl/filebrowser/', include(site.urls)),
     )
 
 Now you are able to browse the location defined with the storage engine associated to your site.

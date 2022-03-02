@@ -1,14 +1,16 @@
 Django FileBrowser
 ==================
-.. image:: https://img.shields.io/pypi/v/django-filebrowser-no-grappelli2.svg
-    :target: https://pypi.python.org/pypi/django-filebrowser-no-grappelli2
+.. image:: https://api.travis-ci.org/smacker/django-filebrowser-no-grappelli.svg
+    :target: https://travis-ci.org/smacker/django-filebrowser-no-grappelli
 
-.. image:: https://img.shields.io/pypi/l/django-filebrowser-no-grappelli2.svg
-    :target: https://pypi.python.org/pypi/django-filebrowser-no-grappelli2
+.. image:: https://readthedocs.org/projects/django-filebrowser/badge/?version=latest
+    :target: http://django-filebrowser.readthedocs.org/en/latest/?badge=latest
 
-.. image:: https://img.shields.io/pypi/dm/django-filebrowser-no-grappelli2
-    :alt: PyPI - Downloads
-    :target: https://pypi.python.org/pypi/django-filebrowser-no-grappelli2
+.. image:: https://img.shields.io/pypi/v/django-filebrowser-no-grappelli.svg
+    :target: https://pypi.python.org/pypi/django-filebrowser-no-grappelli
+
+.. image:: https://img.shields.io/pypi/l/django-filebrowser-no-grappelli.svg
+    :target: https://pypi.python.org/pypi/django-filebrowser-no-grappelli
 
 **Media-Management**. (based on https://github.com/sehmaschine/django-filebrowser)
 
@@ -21,9 +23,9 @@ The FileBrowser is an extension to the `Django <http://www.djangoproject.com>`_ 
 Requirements
 ------------
 
-FileBrowser 3.8 requires
+FileBrowser 4.0 requires
 
-* Django >= 3.2 (http://www.djangoproject.com)
+* Django 2/3/4 (http://www.djangoproject.com)
 * Pillow (https://github.com/python-imaging/Pillow)
 
 No Grappelli
@@ -40,11 +42,11 @@ Installation
 
 Latest version:
 
-    pip install -e git+git://github.com/christianwgd/django-filebrowser-no-grappelli.git#egg=django-filebrowser-no-grappelli
+    pip install -e git+git://github.com/smacker/django-filebrowser-no-grappelli.git#egg=django-filebrowser
 
 Stable version:
 
-    pip install django-filebrowser-no-grappelli2
+    pip install django-filebrowser-no-grappelli
 
 Documentation
 -------------
@@ -61,10 +63,9 @@ https://www.transifex.com/projects/p/django-filebrowser/
 Releases
 --------
 
-* FileBrowser 3.8.1 (January 7, 2021): Compatible with Django 3.1, TinyMCE 5
-* FileBrowser 3.8.2 (January 21, 2021): Azure Blob Storage Mixin added
-* FileBrowser 3.8.3 - invalid
-* FileBrowser 3.8.4 (March 12, 2021): Remove Django 4.0 deprecation warning
-* FileBrowser 3.8.5 (December 7, 2021): Django 4.0 compatibility
+* FileBrowser 4.0.0 (February 2nd, 2022): Compatible with Django 3/4
+* FileBrowser 3.8.0 (November 4th, 2019): Compatible with Django 1.11/2.0/2.1/2.2/3.0
+* FileBrowser 3.7.9 (November 3rd, 2019): Compatible with Django 1.8/1.9/1.10/1.11/2.0/2.1/2.2
+* FileBrowser 3.6.2 (March 7th, 2016): Compatible with Django 1.4/1.5/1.6/1.7/1.8/1.9
 
 Older versions are available at GitHub, but are not supported anymore.

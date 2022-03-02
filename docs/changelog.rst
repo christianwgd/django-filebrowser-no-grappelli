@@ -8,6 +8,13 @@
 Changelog
 =========
 
+4.0.0 (February 2nd, 2022)
+---------------------------
+
+* Django 4.0 support, drop Django <3. Thanks to @pulse-mind.
+* Support for TinyMCE v5. Thanks to @rmaceissoft.
+* Dropbox storage support. Thanks to @rmaceissoft.
+
 3.8.0 (Novermber 4th, 2019)
 ---------------------------
 

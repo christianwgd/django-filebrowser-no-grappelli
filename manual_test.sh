@@ -2,7 +2,7 @@
 
 set -e
 
-# Setup project for Django >=2
+# Auto setup project for Django >=2
 
 VIRTUALENV_DIR="envs"
 PROJECTS_DIR="projects"
@@ -33,13 +33,7 @@ INSTALLED_APPS = (
     #'dummy',
 )
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'test.db'),
-    }
-}
-
+import os.path
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 " >> "$PROJECT_PATH/fb/settings.py"
@@ -47,11 +41,9 @@ MEDIA_URL = '/media/'
 echo "
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.urls import path
 from filebrowser.sites import site
-
-from django.contrib import admin
-admin.autodiscover()
 
 urlpatterns = [
     path('admin/filebrowser/', site.urls),

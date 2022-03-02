@@ -107,12 +107,10 @@
 
 <!-- CONTENT -->
 {% block content %}
-    <div id="content-main">
+    <div id="content-main"{%if old_design %} class="old-design"{% endif %}>
         <!-- POP-UP BREADCRUMBS -->
         {% if query.pop %}
-            <div class="breadcrumbs">
             {% include "filebrowser/include/breadcrumbs.html" %}
-            </div>
         {% endif %}
 
         <!-- OBJECT-TOOLS -->

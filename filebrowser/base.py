@@ -532,7 +532,7 @@ class FileObject():
         except IOError:
             version.save(tmpfile, format=Image.EXTENSION[ext.lower()], quality=VERSION_QUALITY)
         # remove old version, if any
-        if version_path != self.site.storage.get_available_name(version_path):
+        if self.site.storage.path(version_path) != self.site.storage.get_available_name(version_path):
             self.site.storage.delete(version_path)
         self.site.storage.save(version_path, tmpfile)
         # set permissions
