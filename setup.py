@@ -7,7 +7,7 @@ def read(fname):
 
 
 setup(
-    name='django-filebrowser-no-grappelli',
+    name='django-filebrowser-no-grappelli2',
     version='4.0.1',
     description='Media-Management no Grappelli',
     long_description=read('README.rst'),
