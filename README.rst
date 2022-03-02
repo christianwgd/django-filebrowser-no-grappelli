@@ -18,6 +18,9 @@ The FileBrowser is an extension to the `Django <http://www.djangoproject.com>`_ 
 * include images/documents to your models/database using the ``FileBrowseField``.
 * select images/documents with TinyMCE.
 
+The only difference by now to the original smacker/django-filebrowser-no-grappelli is
+the additional Azure storage class.
+
 Requirements
 ------------
 
@@ -61,7 +64,7 @@ https://www.transifex.com/projects/p/django-filebrowser/
 Releases
 --------
 
-* FileBrowser 4.0.1 (March 2nd, 2022): Compatible with Django 3/4
+* FileBrowser 4.0.1 (March 2nd, 2022): Compatible with Django 3/4, merge back smacker/master
 * FileBrowser 3.8.0 (November 4th, 2019): Compatible with Django 1.11/2.0/2.1/2.2/3.0
 * FileBrowser 3.7.9 (November 3rd, 2019): Compatible with Django 1.8/1.9/1.10/1.11/2.0/2.1/2.2
 * FileBrowser 3.6.2 (March 7th, 2016): Compatible with Django 1.4/1.5/1.6/1.7/1.8/1.9
