@@ -8,6 +8,11 @@
 Changelog
 =========
 
+4.0.2 (July 18th, 2023)
+---------------------------
+
+* Address Pillow 10 incompatibility. #80 Thanks to @christianwgd.
+
 4.0.1 (Match 2nd, 2022)
 ---------------------------
 

@@ -34,7 +34,10 @@ class VersionNode(Node):
             source = source.name
         else:  # string
             source = source
-        site = context.get('filebrowser_site', get_default_site())
+        if 'filebrowser_site' in context:
+            site = context['filebrowser_site']
+        else:
+            site = get_default_site()
         if FORCE_PLACEHOLDER or (SHOW_PLACEHOLDER and not site.storage.isfile(source)):
             source = PLACEHOLDER
         fileobject = FileObject(source, site=site)
