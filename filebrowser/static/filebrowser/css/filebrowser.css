@@ -218,7 +218,8 @@ span.qq-upload-file {
 
 .popup.filebrowser.change-list .filtered .results,
 .popup.filebrowser.change-list .filtered #toolbar {
-    margin-right: 260px;
+    /* Remove for django 6 */
+    /*margin-right: 260px;*/
 }
 
 #changelist .changelist-form-container {
